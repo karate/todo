@@ -1,0 +1,20 @@
+<html>
+  <head>
+	<title>ToDo</title>
+  <meta charset="UTF-8"> 
+	<script type="text/javascript" src="/static/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript" src="/static/script.js"></script>
+	<link href="https://fonts.googleapis.com/css?family=GFS+Neohellenic:400,700&amp;subset=greek" rel="stylesheet"> 
+	<link rel="stylesheet" type="text/css" href="/static/style.css">
+  </head>
+  <body>
+  	<div class="container">
+  		<input placeholder="Add task">
+			<ul>
+			{% for task in tasks %}
+				<li id="{{ task.id }}">{{ task.title }}</li>
+			{% endfor %}
+			</ul>
+  	</div>
+  </body>
+</html>

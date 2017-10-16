@@ -1,0 +1,42 @@
+@font-face {
+  font-family: 'GFS Neohellenic';
+  font-style: normal;
+  font-weight: 400;
+  src: local('GFS Neohellenic Regular'), local('GFSNeohellenic-Regular'), url(https://fonts.gstatic.com/s/gfsneohellenic/v8/B4xRqbn-tANVqVgamMsSDnA0ar_G1g7ao76N0sFdT7k.woff2) format('woff2');
+  unicode-range: U+0370-03FF;
+}
+
+body {
+	font-family: 'GFS Neohellenic', sans-serif;
+	font-size: 20px;
+}
+
+.container {
+	width: 500px;
+	margin: auto;
+	/*border: 1px solid #eee;*/
+	border-radius: 3px;
+}
+
+input {
+	width: 100%;
+	padding: 10px;
+	font-size: 20px;
+}
+
+ul {
+	width: 100%;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+li {
+	border: 1px solid #eee;
+	padding: 10px;
+	cursor: pointer;
+}
+
+li:hover {
+	background-color: #eee;
+}

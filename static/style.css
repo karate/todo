@@ -30,7 +30,7 @@ li {
 }
 
 li:hover {
-	background-color: #eee;
+	background-color: #f3f3f3;
 }
 
 li.done {
@@ -42,4 +42,9 @@ li.done {
   float: right;
   color: red;
   font-size: 0.7rem;
+  display: none;
+}
+
+li:hover .delete {
+  display: block;
 }

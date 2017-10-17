@@ -5,6 +5,13 @@ $(function() {
 
 	$('ul').on('click', 'li', function() {
 		task_id = $(this).attr('id');
+		// delete_task(task_id)
+		status = !$(this).hasClass('done');
+		change_status(task_id, status)
+	});
+
+	$('ul').on('click', '.delete', function() {
+		task_id = $(this).parent('li').attr('id');
 		delete_task(task_id)
 	});
 
@@ -25,6 +32,24 @@ function delete_task(task_id) {
 	});
 }
 
+function change_status(task_id, status) {
+	console.log(status);
+	$.ajax({
+		url: '/api/status/' + task_id,
+		type: 'PUT',
+		contentType : 'application/json',
+		data: JSON.stringify( { "status" : status } ),
+		success: function(new_status) {
+			if (new_status) {
+				$('li#' + task_id).addClass('done');
+			}
+			else {
+				$('li#' + task_id).removeClass('done');
+			}
+		}
+	});
+}
+
 function add_task(task_name) {
 	$.ajax({
 		url: '/api/add',
@@ -32,7 +57,7 @@ function add_task(task_name) {
 		contentType : 'application/json',
 		data: JSON.stringify( { "title" : task_name } ),
 		success: function(id) {
-			$('ul').prepend('<li id="'+id+'">'+task_name+'</li>');
+			$('ul').prepend('<li id="'+id+'">'+task_name+'<span class="delete">delete</span></li>');
 			$('ul').add('h1');
 		}
 	});
@@ -43,10 +68,13 @@ function get_tasks() {
 		url: '/api/tasks',
 		type: 'GET',
 		success: function(data) {
-			console.log(data);
 			$(data).each(function(){
 				console.log(this);
-				$('ul').prepend('<li id="' + this.id + '">' + this.title + '</li>');
+				id = this.id;
+				title = this.title;
+				css_class = '';
+				if (this.done)	{css_class = "done"};
+				$('ul').prepend('<li id="'+id+'" class="'+css_class+'">'+title+'<span class="delete">delete</span></li>');
 			});
 		}
 	});

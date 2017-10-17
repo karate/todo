@@ -1,5 +1,6 @@
 from tinydb import TinyDB, Query
 from flask import Flask, request, abort, jsonify, render_template
+import json
 
 db = TinyDB('db.json')
 
@@ -10,7 +11,7 @@ def index():
     return render_template('index.html')
 
 @app.route('/api/tasks', methods=['GET'])
-def get_tasks():    
+def get_tasks():
     tasks =  jsonify(db.all())
     return tasks
 
@@ -19,6 +20,17 @@ def delete_task(task_id):
     Task = Query()
     db.remove(Task.id == task_id)
     return "Deleting " + str(task_id)
+
+
+@app.route('/api/status/<int:task_id>', methods=['PUT'])
+def update_task(task_id):
+    if not request.json or not 'status' in request.json:
+        abort(400)
+
+    status = json.loads(request.json['status'])
+    Task = Query()
+    db.update({'done': status}, Task.id == task_id)
+    return jsonify(status)
 
 @app.route('/api/add', methods=['POST'])
 def add_task():

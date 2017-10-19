@@ -1,6 +1,8 @@
 
 $(function() {
 
+	$('input').focus();
+
 	get_tasks();
 
 	$('ul').on('click', 'li', function() {
@@ -33,7 +35,6 @@ function delete_task(task_id) {
 }
 
 function change_status(task_id, status) {
-	console.log(status);
 	$.ajax({
 		url: '/api/status/' + task_id,
 		type: 'PUT',
@@ -72,7 +73,6 @@ function get_tasks() {
 		type: 'GET',
 		success: function(data) {
 			$(data).each(function(){
-				console.log(this);
 				id = this.id;
 				title = this.title;
 				css_class = '';

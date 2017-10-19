@@ -51,6 +51,9 @@ function change_status(task_id, status) {
 }
 
 function add_task(task_name) {
+    if (task_name.trim() == "") {
+        return;
+    }
 	$.ajax({
 		url: '/api/add',
 		type: 'POST',

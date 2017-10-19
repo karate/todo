@@ -34,17 +34,17 @@ li:hover {
 }
 
 li.done {
-  color: #666;
-  text-decoration: line-through;
+	color: #666;
+	text-decoration: line-through;
 }
 
 .delete {
-  float: right;
-  color: red;
-  font-size: 0.7rem;
-  display: none;
+	float: right;
+	color: red;
+	font-size: 0.7rem;
+	display: none;
 }
 
 li:hover .delete {
-  display: block;
+	display: block;
 }

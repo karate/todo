@@ -19,7 +19,7 @@ $(function() {
 		if(e.keyCode == 13) {
 			task_name = $(this).val();
 			$(this).val('');
-		  add_task(task_name);
+			add_task(task_name);
 		}
 	});
 });
@@ -51,9 +51,9 @@ function change_status(task_id, status) {
 }
 
 function add_task(task_name) {
-    if (task_name.trim() == "") {
-        return;
-    }
+		if (task_name.trim() == "") {
+				return;
+		}
 	$.ajax({
 		url: '/api/add',
 		type: 'POST',

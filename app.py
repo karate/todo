@@ -38,7 +38,7 @@ def update_task(task_id):
 
 @app.route('/api/add', methods=['POST'])
 def add_task():
-    if not request.json or 'title' not in request.json or not request.json['title'].strip()::
+    if not request.json or 'title' not in request.json or not request.json['title'].strip():
         abort(400)
 
     task_count = len(db.all()) + 1
